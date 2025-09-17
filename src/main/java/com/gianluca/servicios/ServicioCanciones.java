@@ -10,6 +10,7 @@ import com.gianluca.repositorios.RepositorioCanciones;
 
 @Service
 public class ServicioCanciones {
+
     @Autowired
     private RepositorioCanciones repositorioCanciones;
 
@@ -24,4 +25,10 @@ public class ServicioCanciones {
     public Optional<Cancion> obtenerCancionPorId(Long id) {
         return repositorioCanciones.findById(id);
     }
+
+    public Cancion agregarCancion(Cancion cancion){
+        return repositorioCanciones.save(cancion) ;
+    }
+
+    
 }

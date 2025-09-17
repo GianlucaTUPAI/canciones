@@ -6,7 +6,6 @@
 <body>
     <h1>Detalle de la Canción</h1>
 
-    <p><strong>ID:</strong> ${cancion.id}</p>
     <p><strong>Título:</strong> ${cancion.titulo}</p>
     <p><strong>Artista:</strong> ${cancion.artista}</p>
     <p><strong>Álbum:</strong> ${cancion.album}</p>
