@@ -10,7 +10,7 @@
     </head>
     <body>
         <h1>Formulario para agregar canciones</h1>
-        <form:form method= "POST" action="/canciones/procesa/agregar" modelAttribute="cancion">
+        <form:form method= "POST" action="/canciones/procesa/agregar" modelAttribute="nuevaCancion">
             <div>
                 <form:label for="titulo" path="titulo">
                     Titulo:

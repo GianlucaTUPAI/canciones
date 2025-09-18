@@ -12,6 +12,10 @@
     <p><strong>Genero:</strong> ${cancion.genero}</p>
     <p><strong>Idioma:</strong> ${cancion.idioma}</p>
     <button><a href="/canciones">Volver a la lista de Canciones</a></button>
+    <form action="/canciones/eliminar/${cancion.id}" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit">Eliminar Canción</button>
+    </form>
 
 </body>
 </html>
