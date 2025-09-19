@@ -16,6 +16,9 @@
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit">Eliminar Canción</button>
     </form>
+    <form method="GET" action="/canciones/formulario/actualizar/${cancion.id}">
+        <button>Actualizar</button>
+    </form>
 
 </body>
 </html>
