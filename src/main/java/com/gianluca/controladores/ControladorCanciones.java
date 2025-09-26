@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gianluca.modelos.Artista;
 import com.gianluca.modelos.Cancion;
+import com.gianluca.servicios.ServicioArtistas;
 import com.gianluca.servicios.ServicioCanciones;
 
 import jakarta.validation.Valid;
@@ -21,9 +24,13 @@ import jakarta.validation.Valid;
 public class ControladorCanciones {
     @Autowired
     private final ServicioCanciones servicioCanciones;
+    @Autowired
+    private ServicioArtistas servicioArtistas;
 
-    public ControladorCanciones(ServicioCanciones servicioCanciones) {
+    public ControladorCanciones(ServicioCanciones servicioCanciones,                               
+                                ServicioArtistas servicioArtistas) {
         this.servicioCanciones = servicioCanciones;
+        this.servicioArtistas = servicioArtistas;
     }
     
 
@@ -43,6 +50,8 @@ public class ControladorCanciones {
 
     @GetMapping("/canciones/formulario/agregar")
     public String procesarAgregarCancion(@ModelAttribute("nuevaCancion") Cancion nuevaCancion, Model modelo) {
+        List<Artista> listaArtistas = servicioArtistas.obtenerTodosLosArtistas();
+        modelo.addAttribute("listaArtistas", listaArtistas);
         modelo.addAttribute("cancion", new Cancion());
         return "agregarCancion";
     }
@@ -63,11 +72,13 @@ public class ControladorCanciones {
 
     @PostMapping("/canciones/procesa/agregar")
     public String formularioAgregarCancion(@Valid @ModelAttribute("nuevaCancion") Cancion nuevaCancion, 
-                                            BindingResult validaciones) {
+                                            BindingResult validaciones, @RequestParam("idArtista") Long idArtista) {
         if(validaciones.hasErrors()){
         return "agregarCancion";
         }
-        this.servicioCanciones.agregarCancion(nuevaCancion);
+        Artista artista = servicioArtistas.obtenerArtistaPorId(idArtista);
+        nuevaCancion.setArtista(artista);
+        servicioCanciones.agregarCancion(nuevaCancion);
         return "redirect:/canciones";
     }
 

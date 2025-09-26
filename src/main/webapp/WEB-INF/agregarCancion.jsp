@@ -9,7 +9,7 @@
         <title>Canciones</title>
     </head>
     <body>
-        <h1>Formulario para agregar canciones</h1>
+        <h1>Formulario para agregar Canciones</h1>
         <form:form method= "POST" action="/canciones/procesa/agregar" modelAttribute="nuevaCancion">
             <div>
                 <form:label for="titulo" path="titulo">
@@ -19,11 +19,16 @@
                 <form:errors path="titulo"/>
             </div>
             <div>
-                <form:label for="artista" path="artista">
+                <label>
                     Artista:
-                </form:label>
-                <form:input type="text" path="artista"/>
-                <form:errors path="artista"/>
+                </label>
+                <select name="idArtista">
+                    <c:forEach var="artista" items="${listaArtistas}">
+                        <option value="${artista.id}">
+                            ${artista.nombre}
+                        </option>
+                    </c:forEach>
+                </select>
             </div>
             <div>
                 <form:label for="album" path="album">
@@ -48,6 +53,6 @@
             </div>
             <button type="submit">Agregar Cancion</button>
         </form:form>
-        <button><a href="/canciones">¡LISTA DE CANCIONES AQUI!</a></button>
+        <button><a href="/artistas">¡LISTA DE ARTISTAS AQUI!</a></button>
     </body>
 </html>

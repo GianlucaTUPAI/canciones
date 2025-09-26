@@ -12,16 +12,16 @@
             <table>
                 <tr>
                     <th>titulo</th>
-                    <th>artista</th>
                 </tr>
                 <c:forEach var="cancion" items="${canciones}">
                 <tr>
                     <td><c:out value="${cancion.titulo}"/></td>
-                    <td><c:out value="${cancion.artista}"/></td>
                     <td><button><a href="/canciones/detalle/${cancion.id}">Ver Detalle</a></button></td>
                 </c:forEach>
                 </tr>
             </table>
-            <button><a href="/canciones/formulario/agregar">Agregar Cancion</a></button>
+            <a href="/canciones/formulario/agregar">AGREGAR CANCION</a>
+            <a href="/artistas">IR A ARTISTA</a>
+            <a href="/artistas/formulario/agregar">AGREGA UN ARTISTA!</a>
         </body>
 </html>
